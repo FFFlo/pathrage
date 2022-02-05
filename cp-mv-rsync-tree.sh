@@ -8,9 +8,6 @@ function exe() {
   showfolders
 }
 
-[[ ! -d test ]] && mkdir test
-cd test
-
 function resetfolders {
     rm -rf ./*
     mkdir -p a/c
@@ -31,16 +28,19 @@ function showfolders {
 
 function runcommands () {
   arr=("$@")
+    echo "-------------------------------- cp -r --------------------------------"
     for paths in "${arr[@]}"
     do
         exe cp -r $paths
     done
 
+    echo "-------------------------------- mv --------------------------------"
     for paths in "${arr[@]}"
     do
         exe mv $paths
     done
 
+    echo "-------------------------------- rsync -av --------------------------------"
     for paths in "${arr[@]}"
     do
         exe rsync -avq $paths
@@ -49,9 +49,14 @@ function runcommands () {
 
 
 ### LETS GO ###
+
+[[ ! -d test ]] && mkdir test
+cd test
+
 clear
 
 echo "Testfolderstructure:"
+resetfolders
 showfolders
 
 array=(\
