@@ -62,11 +62,15 @@ showfolders
 array=(\
 "a      b" \
 "a/     b" \
+"a/     b" \
+"a      b/" \
 "a/     b/" \
 "a/c    b" \
 "a/c    b/" \
 "a/c/   b/" \
+"a/c    b/" \
 "a/c/*  b/")
 
 runcommands "${array[@]}"
 
+rm -rf ../test
