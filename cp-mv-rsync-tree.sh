@@ -29,29 +29,29 @@ function showfolders {
     #find | sed 's|[^/]*/|- |g'
 }
 
-function ausfuehren () {
+function runcommands () {
   arr=("$@")
-    for pfade in "${arr[@]}"
+    for paths in "${arr[@]}"
     do
-        exe cp -r $pfade
+        exe cp -r $paths
     done
 
-    for pfade in "${arr[@]}"
+    for paths in "${arr[@]}"
     do
-        exe mv $pfade
+        exe mv $paths
     done
 
-    for pfade in "${arr[@]}"
+    for paths in "${arr[@]}"
     do
-        exe rsync -avq $pfade
+        exe rsync -avq $paths
     done
 }
 
 
-### LOS GEHTS ###
+### LETS GO ###
 clear
 
-echo "Test Ordneraufbau:"
+echo "Testfolderstructure:"
 showfolders
 
 array=(\
@@ -63,4 +63,5 @@ array=(\
 "a/c/   b/" \
 "a/c/*  b/")
 
-ausfuehren "${array[@]}"
+runcommands "${array[@]}"
+
