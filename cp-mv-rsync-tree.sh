@@ -12,6 +12,7 @@ function resetfolders {
     rm -rf ./*
     mkdir -p a/c
     mkdir -p b/d
+    mkdir e
     touch a/c/x
     touch a/c/y
     touch a/c/.z
@@ -61,7 +62,7 @@ echo "Testfolderstructure:"
 resetfolders
 showfolders
 
-array=(\
+patharray=(\
 "a      b" \
 "a/     b" \
 "a      b/" \
@@ -81,7 +82,7 @@ array=(\
 "a/c/   e" \
 "a/c/*  e/")
 
-runcommands "${array[@]}"
+runcommands "${patharray[@]}"
 
 echo "--------------------------------------------------"
 echo "Info: 'a/c/* b/' will be shown as 'a/c/x a/c/y b/'"

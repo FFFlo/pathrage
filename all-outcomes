@@ -1,0 +1,297 @@
+Testfolderstructure:
+.
+├── a
+│   └── c
+│       ├── x
+│       ├── y
+│       └── .z
+└── b
+    └── d
+
+-------------------------------- cp -r --------------------------------
+$ cp -r a b
+$ cp -r a/ b
+$ cp -r a/ b
+$ cp -r a b/
+$ cp -r a/ b/
+.
+├── a
+│   └── c
+│       ├── x
+│       ├── y
+│       └── .z
+└── b
+    ├── a
+    │   └── c
+    │       ├── x
+    │       ├── y
+    │       └── .z
+    └── d
+
+$ cp -r a/c b
+$ cp -r a/c b/
+$ cp -r a/c/ b/
+$ cp -r a/c/ b
+.
+├── a
+│   └── c
+│       ├── x
+│       ├── y
+│       └── .z
+└── b
+    ├── c
+    │   ├── x
+    │   ├── y
+    │   └── .z
+    └── d
+
+$ cp -r a/c/* b/
+.
+├── a
+│   └── c
+│       ├── x
+│       ├── y
+│       └── .z
+└── b
+    ├── d
+    ├── x
+    └── y
+
+$ cp -r a e
+$ cp -r a/ e
+$ cp -r a e/
+$ cp -r a/ e/
+.
+├── a
+│   └── c
+│       ├── x
+│       ├── y
+│       └── .z
+├── b
+│   └── d
+└── e
+    └── c
+        ├── x
+        ├── y
+        └── .z
+
+$ cp -r a/c e
+$ cp -r a/c e/
+$ cp -r a/c/ e/
+$ cp -r a/c/ e
+.
+├── a
+│   └── c
+│       ├── x
+│       ├── y
+│       └── .z
+├── b
+│   └── d
+└── e
+    ├── x
+    ├── y
+    └── .z
+
+$ cp -r a/c/* e/ #must exist
+.
+├── a
+│   └── c
+│       ├── x
+│       ├── y
+│       └── .z
+├── b
+│   └── d
+└── e
+    ├── x
+    └── y
+
+-------------------------------- mv --------------------------------
+$ mv a b
+$ mv a/ b
+$ mv a b/
+$ mv a/ b/
+.
+└── b
+    ├── a
+    │   └── c
+    │       ├── x
+    │       ├── y
+    │       └── .z
+    └── d
+
+$ mv a/c b
+$ mv a/c b/
+$ mv a/c/ b/
+$ mv a/c/ b
+.
+├── a
+└── b
+    ├── c
+    │   ├── x
+    │   ├── y
+    │   └── .z
+    └── d
+
+$ mv a/c/* b/
+mv: Aufruf von stat für 'a/c/*' nicht möglich: Datei oder Verzeichnis nicht gefunden
+
+$ mv a e
+$ mv a/ e
+$ mv a e/
+$ mv a/ e/
+.
+├── b
+│   └── d
+└── e
+    └── c
+        ├── x
+        ├── y
+        └── .z
+
+$ mv a/c e
+$ mv a/c e/
+$ mv a/c/ e/
+$ mv a/c/ e
+.
+├── a
+├── b
+│   └── d
+└── e
+    ├── x
+    ├── y
+    └── .z
+
+$ mv a/c/* e/
+mv: Aufruf von stat für 'a/c/*' nicht möglich: Datei oder Verzeichnis nicht gefunden
+.
+├── a
+│   └── c
+│       ├── x
+│       ├── y
+│       └── .z
+└── b
+    └── d
+
+
+-------------------------------- rsync -av --------------------------------
+$ rsync -avq a b
+$ rsync -avq a b/
+.
+├── a
+│   └── c
+│       ├── x
+│       ├── y
+│       └── .z
+└── b
+    ├── a
+    │   └── c
+    │       ├── x
+    │       ├── y
+    │       └── .z
+    └── d
+
+$ rsync -avq a/ b
+$ rsync -avq a/ b/
+$ rsync -avq a/c b
+$ rsync -avq a/c b/
+.
+├── a
+│   └── c
+│       ├── x
+│       ├── y
+│       └── .z
+└── b
+    ├── c
+    │   ├── x
+    │   ├── y
+    │   └── .z
+    └── d
+
+$ rsync -avq a/c/ b/
+$ rsync -avq a/c/ b
+.
+├── a
+│   └── c
+│       ├── x
+│       ├── y
+│       └── .z
+└── b
+    ├── d
+    ├── x
+    ├── y
+    └── .z
+
+$ rsync -avq a/c/* b/
+.
+├── a
+│   └── c
+│       ├── x
+│       ├── y
+│       └── .z
+└── b
+    ├── d
+    ├── x
+    └── y
+
+$ rsync -avq a e
+$ rsync -avq a e/
+.
+├── a
+│   └── c
+│       ├── x
+│       ├── y
+│       └── .z
+├── b
+│   └── d
+└── e
+    └── a
+        └── c
+            ├── x
+            ├── y
+            └── .z
+
+$ rsync -avq a/ e
+$ rsync -avq a/ e/
+$ rsync -avq a/c e
+$ rsync -avq a/c e/
+.
+├── a
+│   └── c
+│       ├── x
+│       ├── y
+│       └── .z
+├── b
+│   └── d
+└── e
+    └── c
+        ├── x
+        ├── y
+        └── .z
+
+$ rsync -avq a/c/ e/
+$ rsync -avq a/c/ e
+.
+├── a
+│   └── c
+│       ├── x
+│       ├── y
+│       └── .z
+├── b
+│   └── d
+└── e
+    ├── x
+    ├── y
+    └── .z
+
+$ rsync -avq a/c/* e/ #e must not exist
+.
+├── a
+│   └── c
+│       ├── x
+│       ├── y
+│       └── .z
+├── b
+│   └── d
+└── e
+    ├── x
+    └── y
