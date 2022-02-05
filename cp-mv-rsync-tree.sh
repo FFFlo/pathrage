@@ -2,8 +2,8 @@
 
 # Function to display commands
 function exe() {
-  echo "\$ $@"
   resetfolders
+  echo "\$ $@"
   "$@"
   showfolders
 }
@@ -18,7 +18,8 @@ function resetfolders {
 }
 
 function showfolders {
-    tree -a | head -n -1
+    tree -aCA | head -n -1
+    #ls -a -R | grep ':$' | sed -e 's/:$//' -e 's/[^\/]*\//|  /g' -e 's/|  \([^|]\)/|–– \1/g'
     #find . #-type f
     #ls **/* -l
     #du -a . | rev
@@ -50,6 +51,7 @@ function runcommands () {
 
 ### LETS GO ###
 
+[[ -f output ]] && rm output
 [[ ! -d test ]] && mkdir test
 cd test
 
@@ -62,15 +64,17 @@ showfolders
 array=(\
 "a      b" \
 "a/     b" \
-"a/     b" \
 "a      b/" \
 "a/     b/" \
 "a/c    b" \
 "a/c    b/" \
 "a/c/   b/" \
-"a/c    b/" \
+"a/c/   b" \
 "a/c/*  b/")
 
 runcommands "${array[@]}"
+
+echo "--------------------------------------------------"
+echo "Info: 'a/c/* b/' will be shown as 'a/c/x a/c/y b/'"
 
 rm -rf ../test
