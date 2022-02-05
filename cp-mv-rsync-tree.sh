@@ -70,7 +70,16 @@ array=(\
 "a/c    b/" \
 "a/c/   b/" \
 "a/c/   b" \
-"a/c/*  b/")
+"a/c/*  b/" \
+"a      e" \
+"a/     e" \
+"a      e/" \
+"a/     e/" \
+"a/c    e" \
+"a/c    e/" \
+"a/c/   e/" \
+"a/c/   e" \
+"a/c/*  e/")
 
 runcommands "${array[@]}"
 
