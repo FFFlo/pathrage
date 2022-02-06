@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Function to display commands
 function exe() {
   resetfolders
   echo "\$ $@"
@@ -12,7 +11,7 @@ function resetfolders {
     rm -rf ./*
     mkdir -p a/c
     mkdir -p b/d
-    mkdir e
+    #mkdir e
     touch a/c/x
     touch a/c/y
     touch a/c/.z
@@ -71,6 +70,7 @@ patharray=(\
 "a/c    b/" \
 "a/c/   b/" \
 "a/c/   b" \
+"a/c/*  b" \
 "a/c/*  b/" \
 "a      e" \
 "a/     e" \
@@ -80,6 +80,7 @@ patharray=(\
 "a/c    e/" \
 "a/c/   e/" \
 "a/c/   e" \
+"a/c/*  e" \
 "a/c/*  e/")
 
 runcommands "${patharray[@]}"
